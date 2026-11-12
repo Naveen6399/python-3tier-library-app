@@ -1,7 +1,7 @@
 ---
 services:
   db:
-    image: shaikmustafa/arshad:db
+    image: naveen6399/python:db
     deploy:
       replicas: 1
     ports:
@@ -10,9 +10,9 @@ services:
       - mynetwork
 
   auth_service:
-    image: shaikmustafa/arshad:auth
+    image: naveen6399/python:auth
     deploy:
-      replicas: 1
+      replicas: 3
     ports:
       - "5001:5001"
     networks:
@@ -22,19 +22,20 @@ services:
     
 
   book_service:
-    image: shaikmustafa/arshad:book
+    image: naveen6399/python:book
     deploy:
-      replicas: 1
+      replicas: 3
     ports:
       - "5002:5002"
     networks:
       - mynetwork
     depends_on:
       - db
+      
   borrow_service:
-    image: shaikmustafa/arshad:borrow
+    image: naveen6399/python:borrow
     deploy:
-      replicas: 1
+      replicas: 3
     ports:
       - "5003:5003"
     networks:
@@ -43,11 +44,11 @@ services:
       - db
 
   frontend:
-    image: shaikmustafa/arshad:frontend
+    image: naveen6399/python:frontend
     deploy:
-      replicas: 1
+      replicas: 3
     ports:
-      - "5000:5000"
+      - "8080:5000"
     networks:
       - mynetwork
     depends_on:
