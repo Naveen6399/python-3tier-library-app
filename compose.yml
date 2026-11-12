@@ -7,7 +7,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - mynetwork
+      - newnet
 
   auth_service:
     image: naveen6399/python:auth
@@ -16,7 +16,7 @@ services:
     ports:
       - "5001:5001"
     networks:
-      - mynetwork
+      - newnet
     depends_on:
       - db
     
@@ -28,7 +28,7 @@ services:
     ports:
       - "5002:5002"
     networks:
-      - mynetwork
+      - newnet
     depends_on:
       - db
       
@@ -39,7 +39,7 @@ services:
     ports:
       - "5003:5003"
     networks:
-      - mynetwork
+      - newnet
     depends_on:
       - db
 
@@ -50,12 +50,12 @@ services:
     ports:
       - "8080:5000"
     networks:
-      - mynetwork
+      - newnet
     depends_on:
       - auth_service
       - book_service
       - borrow_service
 
 networks:
-  mynetwork:
+  newnet:
     driver: overlay
